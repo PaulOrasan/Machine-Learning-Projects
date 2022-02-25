@@ -6,6 +6,7 @@ from sklearn.svm import SVC
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.naive_bayes import GaussianNB
+from sklearn.neural_network import MLPClassifier
 
 def preprocessAdultDataset(dataframe: Dataset):
     dataframe.encodeMultipleColumnsToNumerifcFormat(text_features)
@@ -50,6 +51,7 @@ manager.addModel(Classifier('Decision Tree with no max depth and features (all l
                             train_dataset, features, label))
 manager.addModel(Classifier('Naive Bayes with default hyperparameters', GaussianNB(),
                             train_dataset, features, label))
-
+manager.addModel(Classifier('Multi-layer pereptron with default hyperparameters', MLPClassifier(), train_dataset, features, label))
+manager.addModel(Classifier('Multi-layer pereptron with 3 layers', MLPClassifier((10,5,7)), train_dataset, features, label))
 manager.testModels(test_dataset)
 manager.showEvaluations()
